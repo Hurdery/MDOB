@@ -7,26 +7,51 @@
 //
 
 #import "ListenVC.h"
+#import "ListenManger.h"
 
 @interface ListenVC ()
+
+@property (weak, nonatomic) IBOutlet UILabel *wifiSent;
+@property (weak, nonatomic) IBOutlet UILabel *wifiReceive;
+
+@property (weak, nonatomic) IBOutlet UILabel *cpuUse;
+@property (weak, nonatomic) IBOutlet UILabel *cpuFree;
+
+@property (weak, nonatomic) IBOutlet UILabel *ramAll;
+@property (weak, nonatomic) IBOutlet UILabel *ramFree;
+
+@property (weak, nonatomic) IBOutlet UILabel *startTime;
+@property (weak, nonatomic) IBOutlet UILabel *runTime;
+
 
 @end
 
 @implementation ListenVC
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [ListenManger startListen:^(NSDictionary * _Nonnull dic) {
+            [self configureData:dic];
+        }];
+
+    }];
+     
 }
 
-/*
-#pragma mark - Navigation
+- (void)configureData:(NSDictionary *)dic {
+    
+    self.wifiSent.text = dic[@"wifiSent"];
+    self.wifiReceive.text = dic[@"wifiReceive"];
+    self.cpuUse.text = dic[@"cpuUse"];
+    self.cpuFree.text = dic[@"cpuFree"];
+    self.ramAll.text  = dic[@"ramAll"];
+    self.ramFree.text = dic[@"ramFree"];
+        
+    self.startTime.text = [ListenManger systemUpTime];
+    self.runTime.text =  [ListenManger systemRunningTime];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -54,13 +54,6 @@ typedef struct {
 + (NSInteger)getCPUCoreNumber;
 
 /**
- CPU 频率
-
- @return NSUInteger
- */
-+ (NSUInteger)getCPUFrequency;
-
-/**
  CPU 架构 (processor architecture)
 
  @return NSString
