@@ -6,5 +6,6 @@
 ![Image text](https://github.com/Hurdery/MDOB/blob/master/cover/WechatIMG82.png)
 
 ## 鸣谢
-本demo数据来源https://github.com/Hurdery/FSAPMSDK，特此感谢！
+本demo数据来源https://github.com/Ericfengshi/FSAPMSDK
+致敬辛苦开源者！
 
